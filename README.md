@@ -6,7 +6,7 @@ The differences:
 
 1) No glimpse network, glimpse is a single patch (4x4), instead a collection of multiple resolution patches as in RAM
 
-2) Actions are discrete: move up, up-right, right, down-right, down, down-left, left from the current location. RAM actions is exact location of patches.
+2) Actions, saccades, are discrete: move up, up-right, right, down-right, down, down-left, left from the current location. RAM actions are locations of patches.
 
 3) Additional network is used to identify initial location from where glimpses start. The location network receives downsized image as input.
 
