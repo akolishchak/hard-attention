@@ -22,10 +22,7 @@ Interesting enough that in many cases actions learned trajectories that reproduc
 
 original image|overlapped by saccade trajectory
 ---|---
-![alt tag](samples/actions_1.jpg)![alt tag](samples/actions_4.jpg)![alt tag](samples/actions_20.jpg)![alt tag](samples/actions_26.jpg)![alt tag](samples/actions_48.jpg)![alt tag](samples/actions_53.jpg)![alt tag](samples/actions_57.jpg)![alt tag](samples/actions_77.jpg)|![alt tag](samples/actions_1-5.jpg)![alt tag](samples/actions_4-1.jpg)![alt tag](samples/actions_20-9.jpg)![alt tag](samples/actions_26-2.jpg)![alt tag](samples/actions_48-5.jpg)![alt tag](samples/actions_53-7.jpg)![alt tag](samples/actions_57-10.jpg)![alt tag](samples/actions_77-2.jpg)
-![alt tag](samples/actions_85.jpg)|![alt tag](samples/actions_85-7.jpg)
-![alt tag](samples/actions_90.jpg)|![alt tag](samples/actions_90-4.jpg)
-![alt tag](samples/actions_99.jpg)|![alt tag](samples/actions_99-3.jpg)
+![alt tag](samples/actions_1.jpg)![alt tag](samples/actions_4.jpg)![alt tag](samples/actions_20.jpg)![alt tag](samples/actions_26.jpg)![alt tag](samples/actions_48.jpg)![alt tag](samples/actions_53.jpg)![alt tag](samples/actions_57.jpg)![alt tag](samples/actions_77.jpg)![alt tag](samples/actions_85.jpg)![alt tag](samples/actions_90.jpg)![alt tag](samples/actions_99.jpg)|![alt tag](samples/actions_1-5.jpg)![alt tag](samples/actions_4-1.jpg)![alt tag](samples/actions_20-9.jpg)![alt tag](samples/actions_26-2.jpg)![alt tag](samples/actions_48-5.jpg)![alt tag](samples/actions_53-7.jpg)![alt tag](samples/actions_57-10.jpg)![alt tag](samples/actions_77-2.jpg)![alt tag](samples/actions_85-7.jpg)![alt tag](samples/actions_90-4.jpg)![alt tag](samples/actions_99-3.jpg)
 ![alt tag](samples/actions_102.jpg)|![alt tag](samples/actions_102-7.jpg)
 ![alt tag](samples/actions_104.jpg)|![alt tag](samples/actions_104-7.jpg)
 ![alt tag](samples/actions_106.jpg)|![alt tag](samples/actions_106-1.jpg)
