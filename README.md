@@ -2,7 +2,8 @@
 
 An image is scanned via small patches (glimpses) to perform classification. Inspired by “Recurrent Models of Visual Attention” http://arxiv.org/abs/1406.6247 (RAM), however different model is used.
 
-The differences:<br>
+The differences:
+
 1) No glimpse network, glimpse is a single patch (4x4), instead a collection of multiple resolution patches as in RAM
 
 2) Actions are discrete: move up, up-right, right, down-right, down, down-left, left from the current location. RAM actions is exact location of patches.
@@ -21,8 +22,9 @@ Interesting enough that in many cases actions learned trajectories that reproduc
 
 original image|overlapped by saccade trajectory
 ---|---
-![alt tag](samples/actions_1.jpg)![alt tag](samples/actions_4.jpg)|![alt tag](samples/actions_1-5.jpg)![alt tag](samples/actions_4-1.jpg)
-![alt tag](samples/actions_20.jpg)|![alt tag](samples/actions_20-9.jpg)
+![alt tag](samples/actions_1.jpg)![alt tag](samples/actions_4.jpg)![alt tag](samples/actions_20.jpg)
+|![alt tag](samples/actions_1-5.jpg)![alt tag](samples/actions_4-1.jpg)![alt tag](samples/actions_20-9.jpg)
+
 ![alt tag](samples/actions_26.jpg)|![alt tag](samples/actions_26-2.jpg)
 ![alt tag](samples/actions_48.jpg)|![alt tag](samples/actions_48-5.jpg)
 ![alt tag](samples/actions_53.jpg)|![alt tag](samples/actions_53-7.jpg)
