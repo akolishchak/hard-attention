@@ -4,9 +4,13 @@ An image is scanned via small patches (glimpses) to perform classification. Insp
 
 The differences:
 1) No glimpse network, glimpse is a single patch (4x4), instead a collection of multiple resolution patches as in RAM
+
 2) Actions are discrete: move up, up-right, right, down-right, down, down-left, left from the current location. RAM actions is exact location of patches.
+
 3) Additional network is used to identify initial location from where glimpses start. The location network receives downsized image as input.
+
 ![alt tag](drawing.png)
+
 Action and Initial Location networks are trained by REINFORCE. The reward with class probability value as a reward.
 
 ## Results of training on MNIST
@@ -17,29 +21,29 @@ Interesting enough that in many cases actions learned trajectories that reproduc
 
 original image|overlapped by saccade trajectory
 ---|---
-![alt tag](samples/actions_1.jmg)|![alt tag](samples/actions_1-5.jmg)
-![alt tag](samples/actions_4.jmg)|![alt tag](samples/actions_4-1.jmg)
-![alt tag](samples/actions_20.jmg)|![alt tag](samples/actions_20-9.jmg)
-![alt tag](samples/actions_26.jmg)|![alt tag](samples/actions_26-2.jmg)
-![alt tag](samples/actions_48.jmg)|![alt tag](samples/actions_48-5.jmg)
-![alt tag](samples/actions_53.jmg)|![alt tag](samples/actions_53-7.jmg)
-![alt tag](samples/actions_57.jmg)|![alt tag](samples/actions_57-10.jmg)
-![alt tag](samples/actions_77.jmg)|![alt tag](samples/actions_77-2.jmg)
-![alt tag](samples/actions_85.jmg)|![alt tag](samples/actions_85-7.jmg)
-![alt tag](samples/actions_90.jmg)|![alt tag](samples/actions_90-4.jmg)
-![alt tag](samples/actions_99.jmg)|![alt tag](samples/actions_99-3.jmg)
-![alt tag](samples/actions_102.jmg)|![alt tag](samples/actions_102-7.jmg)
-![alt tag](samples/actions_104.jmg)|![alt tag](samples/actions_104-7.jmg)
-![alt tag](samples/actions_106.jmg)|![alt tag](samples/actions_106-1.jmg)
-![alt tag](samples/actions_124.jmg)|![alt tag](samples/actions_124-7.jmg)
-![alt tag](samples/actions_131.jmg)|![alt tag](samples/actions_131-3.jmg)
-![alt tag](samples/actions_135.jmg)|![alt tag](samples/actions_135-1.jmg)
-![alt tag](samples/actions_137.jmg)|![alt tag](samples/actions_137-3.jmg)
-![alt tag](samples/actions_188.jmg)|![alt tag](samples/actions_188-2.jmg)
-![alt tag](samples/actions_217.jmg)|![alt tag](samples/actions_217-10.jmg)
-![alt tag](samples/actions_218.jmg)|![alt tag](samples/actions_218-4.jmg)
-![alt tag](samples/actions_239.jmg)|![alt tag](samples/actions_239-6.jmg)
-![alt tag](samples/actions_315.jmg)|![alt tag](samples/actions_315-4.jmg)
+![alt tag](samples/actions_1.jpg)|![alt tag](samples/actions_1-5.jpg)
+![alt tag](samples/actions_4.jpg)|![alt tag](samples/actions_4-1.jpg)
+![alt tag](samples/actions_20.jpg)|![alt tag](samples/actions_20-9.jpg)
+![alt tag](samples/actions_26.jpg)|![alt tag](samples/actions_26-2.jpg)
+![alt tag](samples/actions_48.jpg)|![alt tag](samples/actions_48-5.jpg)
+![alt tag](samples/actions_53.jpg)|![alt tag](samples/actions_53-7.jpg)
+![alt tag](samples/actions_57.jpg)|![alt tag](samples/actions_57-10.jpg)
+![alt tag](samples/actions_77.jpg)|![alt tag](samples/actions_77-2.jpg)
+![alt tag](samples/actions_85.jpg)|![alt tag](samples/actions_85-7.jpg)
+![alt tag](samples/actions_90.jpg)|![alt tag](samples/actions_90-4.jpg)
+![alt tag](samples/actions_99.jpg)|![alt tag](samples/actions_99-3.jpg)
+![alt tag](samples/actions_102.jpg)|![alt tag](samples/actions_102-7.jpg)
+![alt tag](samples/actions_104.jpg)|![alt tag](samples/actions_104-7.jpg)
+![alt tag](samples/actions_106.jpg)|![alt tag](samples/actions_106-1.jpg)
+![alt tag](samples/actions_124.jpg)|![alt tag](samples/actions_124-7.jpg)
+![alt tag](samples/actions_131.jpg)|![alt tag](samples/actions_131-3.jpg)
+![alt tag](samples/actions_135.jpg)|![alt tag](samples/actions_135-1.jpg)
+![alt tag](samples/actions_137.jpg)|![alt tag](samples/actions_137-3.jpg)
+![alt tag](samples/actions_188.jpg)|![alt tag](samples/actions_188-2.jpg)
+![alt tag](samples/actions_217.jpg)|![alt tag](samples/actions_217-10.jpg)
+![alt tag](samples/actions_218.jpg)|![alt tag](samples/actions_218-4.jpg)
+![alt tag](samples/actions_239.jpg)|![alt tag](samples/actions_239-6.jpg)
+![alt tag](samples/actions_315.jpg)|![alt tag](samples/actions_315-4.jpg)
 ---
 
 ## The model parameters
