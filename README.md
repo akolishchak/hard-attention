@@ -18,7 +18,7 @@ Action and Initial Location networks are trained by REINFORCE. The reward with c
 20 glimpses of 4x4 size with action step size 2, 10 epochs
 train – 97.48%, test – 95.56%
 
-Interesting enough, in many cases actions learned trajectories, saccades, that reproduce the form of digits:
+Interesting enough, in many cases learned trajectories (saccades) reproduce the form of digits:
 
  |Images
 ---|---
