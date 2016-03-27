@@ -36,4 +36,4 @@ LSTM, one layer of 512 cells
 one layer, 4 x downsized input, soft max + stochastic multinomial module that outputs location coordinates
 
 #### Regularization
-All networks use dropout 0.7. The dropout is essential for network stability and allows finding of better action policies.
+All networks use dropout 0.7. The dropout is essential for network stability and allows finding better action policies.
