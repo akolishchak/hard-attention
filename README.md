@@ -28,9 +28,7 @@ In main setup, we walk the agent through an environment to set observation expec
 20 glimpses of 4x4 size with action step size 2, 10 epochs
 train – 97.48%, test – 95.56%
 
-As you can see below, in many cases learned trajectories reproduce the form of digits.
-
-This result shows optimality of using the same state for generating (actions) and recognition (perception) of trajectories, which is main postulate of active inference.
+As you can see below, in many cases learned trajectories reproduce the form of digits. This result confirms optimality of using the same state for generating (actions) and recognition (perception) of trajectories, which is main postulate of active inference.
 
  |Images
 ---|---
