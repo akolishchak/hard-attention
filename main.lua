@@ -14,6 +14,7 @@ require 'image'
 require 'data.dataset'
 require 'glimpse'
 require 'MultinomialAction'
+require 'demo'
 
 local model_utils = require 'util.model_utils'
 local LSTM = require 'LSTM'
@@ -29,13 +30,13 @@ cmd:option('-glimpse_step', 2, 'width of glimpse')
 cmd:option('-rnn_size', 512, 'size of RNN internal state')
 cmd:option('-seq_length', 20, 'number of timesteps to unroll for')
 cmd:option('-num_layers', 1, 'number of layers in the LSTM')
-cmd:option('-dropout', 0.9, 'dropout')
+cmd:option('-dropout', 0.7, 'dropout')
 cmd:option('-learning_rate', 1e-3, 'learning rate')
 cmd:option('-batch_size', 100, 'number of sequences to train on in parallel')
 cmd:option('-max_epoch', 10, 'number of full passes through the training data')
 cmd:option('-gpu',2,'0 - cpu, 1 - cunn, 2 - cudnn')
 cmd:option('-output_path', 'images', 'path for output images')
-cmd:option('-pass_type', 'train', 'type of pass: train, test')
+cmd:option('-mode', 'base', 'base - baseline, demo - demonstration rewards')
 
 opt = cmd:parse(arg)
 opt.glimpse_size = opt.glimpse_width * opt.glimpse_width
@@ -60,6 +61,7 @@ opt.max_step = dataset.train_x_glimpse:size(3)
 opt.location_image_size = (opt.image_width/opt.glimpse_width)^2
 opt.channel_num = dataset.train_x:size(2)
 
+local demo = opt.mode == 'demo' and get_demo(dataset.train_x_glimpse, opt)
 --
 -- build model
 --
@@ -143,8 +145,6 @@ params, grad_params = model_utils.combine_all_parameters(glimpse_model, class_mo
 
 glimpse_model_clones = model_utils.clone_many_times(glimpse_model, opt.seq_length)
 
-action_policy.init(opt)
-
 --
 -- optimize
 --
@@ -164,6 +164,8 @@ function feval(x)
   
   -- forward pass
   
+  local demo_reward_loss = opt.mode == 'demo' and input.new(opt.seq_length, opt.batch_size, 1)
+  
   -- initial location
   local location = initial_location_model:forward(input_image):long()
   
@@ -173,6 +175,10 @@ function feval(x)
   for t=1,opt.seq_length do
     -- take glimpse
     glimpse[t] = get_glimpse(input, location)
+    
+    if opt.mode == 'demo' then
+      demo_reward_loss[t] = action_policy.get_demo_reward_loss(glimpse[t], demo[t])
+    end
     -- rnn step
     glimpse_model_clones[t]:training()
     glimpse_h[t], action = unpack(glimpse_model_clones[t]:forward{glimpse[t], unpack(glimpse_h[t-1])})
@@ -188,6 +194,7 @@ function feval(x)
   
   local class = class_model:forward(glimpse_output)
   local loss = criterion:forward(class, target)
+  
   local reward_loss = action_policy.get_reward_loss(class, target)
   
   -- backward pass
@@ -197,17 +204,20 @@ function feval(x)
   dclass_dglimpse_h = { [opt.seq_length] = dloss_dclass }
   
   for t=opt.seq_length,1,-1 do
-    dclass_dglimpse_h[t-1] = glimpse_model_clones[t]:backward({glimpse[t], unpack(glimpse_h[t-1])}, {dclass_dglimpse_h[t], reward_loss})
+    local reward = opt.mode == 'base' and
+                   reward_loss or -- classification reward
+                   demo_reward_loss[t]:add(reward_loss) -- composite reward
+    
+    dclass_dglimpse_h[t-1] = glimpse_model_clones[t]:backward({glimpse[t], unpack(glimpse_h[t-1])}, {dclass_dglimpse_h[t], reward})
     table.remove(dclass_dglimpse_h[t-1], 1) -- remove x gradient
   end
   
   -- transfer final state to initial state
   glimpse_h_init = glimpse_h[#glimpse_h]
-  
   initial_location_model:backward(input_image, reward_loss:expand(reward_loss:size(1),2))
-    
-  return loss+reward_loss:mean(), grad_params
-  --return loss, grad_params
+  
+  reward_loss = opt.mode == 'base' and reward_loss:mean() or demo_reward_loss:mean()
+  return loss+reward_loss, grad_params
 end
 
 --
